@@ -1,0 +1,5 @@
+
+        [ckan.plugins]
+        # Add plugins here, e.g.
+        license_manager=ckanext.licenses.plugin:LicenseClass
+    

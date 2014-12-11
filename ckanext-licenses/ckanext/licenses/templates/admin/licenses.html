@@ -1,0 +1,45 @@
+{% import 'macros/autoform.html' as autoform %}
+
+{% extends "admin/base.html" %}
+
+{% block primary_content_inner %}
+  <form method='post' action="" class="form-horizontal">
+    {% block admin_form %}
+    {{ autoform.generate(form_items, data, errors) }}      
+    {% endblock %}
+    <div class="form-actions">
+	{% set locale = h.dump_json({'content': _('Are you sure that you want to delete this license?')}) %}
+    <button type="submit" class="btn btn-primary" name="save">{{ _('Save License') }}</button>
+    </div>
+  </form>
+  <form method='post' action="" class="form horizontal">
+    {{ autoform.generate(delete_form_items, data, errors) }}
+    <div class = "form-actions">
+    <button type="submit" class="btn btn-primary" name="delete">{{ _('Delete License') }}</button>
+    <button type="submit" class="btn btn-secondary" name="edit">{{ _('Edit License') }}</button>
+    </div>
+   </form>
+{% endblock %}
+{% block secondary_content %}
+  <div class="module module-narrow module-shallow">
+    <h2 class="module-heading">
+      <i class="icon-info-sign"></i>
+      {{ _('License options') }}
+    </h2>
+    <div class="module-content">
+      {% block admin_form_help %}
+      {% trans %}
+        <p><strong>Title:</strong> This is the title of the license.</p>
+        <p><strong>Family:</strong> This indicates if the license is part of a family
+	  of licenses. </p>
+        <p><strong>Maintainer:</strong> This is who is responsible for the license.</p>
+        <p><strong>URL:</strong> This url will direct people to more information about the license.</p>
+        <p><strong>ODK, OSI Compliant:</strong> This is to indicate whether the license meets the standards
+	  laid out by the ODK and OSI.</p>
+        <p><strong>Domain:</strong> This is to indicate what the license has domain over. If the license
+	  is not specific choose generic.</p>
+      {% endtrans %}
+      {% endblock %}
+    </div>
+  </div>
+{% endblock %}
