@@ -154,7 +154,7 @@ class LicenseController(base.BaseController):
     def _get_license_titles(self):
 
         self._load_licenses()
-	context = {'user' :'hayden'}
+	context = {'user' : c.user}
     	data_dict = {}
     	licenses = logic.get_action('license_list')(context, data_dict)
     	titles = []
